@@ -6,16 +6,10 @@ function imdb = cnn_miniplaces_setup_data(varargin)
 %    Within the 'data' folder (which can be a symlink), create the following
 %    hierarchy:
 %
-%    <DATA>/images/train/ : content of ILSVRC2012_img_train.tar
-%    <DATA>/images/val/ : content of ILSVRC2012_img_val.tar
-%    <DATA>/images/test/ : content of ILSVRC2012_img_test.tar
-%    <DATA>/ILSVRC2012_devkit : content of ILSVRC2012_devkit.tar
-%
-%    In order to speedup training and testing, it may be a good idea
-%    to preprocess the images to have a fixed size (e.g. 256 pixels
-%    high) and/or to store the images in RAM disk (provided that
-%    sufficient RAM is available). Reading images off disk with a
-%    sufficient speed is crucial for fast training.
+%    <DATA>/images/train/
+%    <DATA>/images/val/
+%    <DATA>/images/test/
+%    <DATA>/delopment_kit: content of development_kit tarfile
 
 opts.dataDir = 'data' ;
 opts.lite = false ;

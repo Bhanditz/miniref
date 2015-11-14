@@ -1,5 +1,5 @@
-function imo = cnn_imagenet_get_batch(images, varargin)
-% CNN_IMAGENET_GET_BATCH  Load, preprocess, and pack images for CNN evaluation
+function imo = cnn_miniplaces_get_batch(images, varargin)
+% CNN_MINIPLACES_GET_BATCH  Load, preprocess, and pack images for CNN evaluation
 
 opts.imageSize = [128, 128] ;
 opts.border = [13, 13] ;
