@@ -195,3 +195,59 @@ net.layers(end) = [] ;
 if opts.batchNormalization, net.layers(end) = [] ; end
 end
 
+
+% --------------------------------------------------------------------
+function net = periscope2Net(net, opts)
+% 5 convnet + 1 FC + 1 softmax
+% --------------------------------------------------------------------
+%% add_block(net, opts, id, h, w, in, out, stride, pad, init_bias)
+
+net.layers = {} ;
+
+% conv1
+net = add_block(net, opts, '1', 8, 8, 3, 64, 2, 0) ;
+net = add_norm(net, opts, '1') ;
+net.layers{end+1} = struct('type', 'pool', 'name', 'pool1', ...
+                           'method', 'max', ...
+                           'pool', [3 3], ...
+                           'stride', 2, ...
+                           'pad', 0) ;
+
+
+% conv2
+net = add_block(net, opts, '2', 3, 3, 32, 128, 1, 2) ;
+net = add_norm(net, opts, '2') ;
+net.layers{end+1} = struct('type', 'pool', 'name', 'pool2', ...
+                           'method', 'max', ...
+                           'pool', [2 2], ...
+                           'stride', 2, ...
+                           'pad', 0) ;
+
+% conv3
+net = add_block(net, opts, '3', 3, 3, 128, 256, 1, 1) ;
+net = add_dropout(net, opts, '3') ;
+net.layers{end+1} = struct('type', 'pool', 'name', 'pool3', ...
+                           'method', 'max', ...
+                           'pool', [3 3], ...
+                           'stride', 2, ...
+                           'pad', 0) ;
+
+% conv4
+net = add_block(net, opts, '4', 3, 3, 128, 512, 1, 0) ;
+net = add_dropout(net, opts, '4') ;
+
+% conv5
+net = add_block(net, opts, '5', 3, 3, 128, 512, 1, 0) ;
+net = add_dropout(net, opts, '5') ;
+
+% conv6
+net = add_block(net, opts, '6', 3, 3, 128, 512, 1, 0) ;
+net = add_dropout(net, opts, '6') ;
+
+% fc7
+net = add_block(net, opts, '7', 1, 1, 512, 100, 1, 0) ;
+net.layers(end) = [] ;
+if opts.batchNormalization, net.layers(end) = [] ; end
+end
+
+

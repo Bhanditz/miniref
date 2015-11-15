@@ -12,7 +12,7 @@ function cnn_refnet(varargin)
 run('matconvnet/matlab/vl_setupnn');
 
 opts.dataDir = 'data';
-opts.modelType = 'periscope';
+opts.modelType = 'periscope2';
 opts.networkType = 'simplenn';
 opts.batchNormalization = false ;
 opts.weightInitMethod = 'gaussian' ;
