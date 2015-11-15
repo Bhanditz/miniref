@@ -12,7 +12,7 @@ function cnn_refnet(varargin)
 run('matconvnet/matlab/vl_setupnn');
 
 opts.dataDir = 'data';
-opts.modelType = 'refNet1';
+opts.modelType = 'periscope';
 opts.networkType = 'simplenn';
 opts.batchNormalization = false ;
 opts.weightInitMethod = 'gaussian' ;
@@ -61,7 +61,7 @@ end
 %                                                    Network initialization
 % -------------------------------------------------------------------------
 
-net = sample_refNet_initial('model', opts.modelType, ...
+net = periscope_net_init('model', opts.modelType, ...
                         'batchNormalization', opts.batchNormalization, ...
                         'weightInitMethod', opts.weightInitMethod) ;
 bopts = net.normalization ;
