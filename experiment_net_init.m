@@ -1,12 +1,12 @@
-function [net] = periscope_net_init(varargin)
-% Modification of the refnet to make a periscope net
+function [net] = experiment_net_init(varargin)
+% Modification of the refnet to make a experiment net
 % adapted from matconvnet-1.0-beta14/matconvnet-1.0-beta14/examples/cnn_imagenet_init.m
 
 opts.scale = 1 ;
 opts.initBias = 0.1 ;
 opts.weightDecay = 1 ;
 opts.weightInitMethod = 'gaussian' ;
-opts.model = 'periscope' ;
+opts.model = 'experiment' ;
 opts.batchNormalization = false ;
 opts = vl_argparse(opts, varargin) ;
 
@@ -15,10 +15,10 @@ net.normalization.imageSize = [126, 126, 3] ;
 switch opts.model
   case 'refNet1'
       net = refNet1(net, opts) ;
-  case 'periscope'
-      net = periscopeNet(net, opts) ;
-  case 'periscope2'
-      net = periscope2Net(net, opts) ;
+  case 'experiment'
+      net = experimentNet(net, opts) ;
+  case 'experiment2'
+      net = experiment2Net(net, opts) ;
   otherwise
     error('Unknown model ''%s''', opts.model) ;
 end
@@ -146,7 +146,7 @@ if opts.batchNormalization, net.layers(end) = [] ; end
 end
 
 % --------------------------------------------------------------------
-function net = periscopeNet(net, opts)
+function net = experimentNet(net, opts)
 % 4 convnet + 1 FC + 1 softmax
 % --------------------------------------------------------------------
 %% add_block(net, opts, id, h, w, in, out, stride, pad, init_bias)
@@ -197,7 +197,7 @@ end
 
 
 % --------------------------------------------------------------------
-function net = periscope2Net(net, opts)
+function net = experiment2Net(net, opts)
 % 5 convnet + 1 FC + 1 softmax
 % --------------------------------------------------------------------
 %% add_block(net, opts, id, h, w, in, out, stride, pad, init_bias)
