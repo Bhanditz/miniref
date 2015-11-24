@@ -12,7 +12,7 @@ function cnn_refnet(varargin)
 run('matconvnet/matlab/vl_setupnn');
 
 opts.dataDir = 'data';
-opts.modelType = 'experiment3';
+opts.modelType = 'experiment12';
 opts.networkType = 'simplenn';
 opts.batchNormalization = false ;
 opts.weightInitMethod = 'gaussian' ;
